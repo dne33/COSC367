@@ -67,10 +67,10 @@ def print_map(map_graph, frontier, solution):
         for arc in solution[1:-1]:
             x,y,_ = arc.head
             map_list[x][y] = '*'
-        for arcs in frontier.explored:
-            x, y, _ = arcs
-            if map_list[x][y] == ' ':
-                map_list[x][y] = '.'
+    for arcs in frontier.explored:
+        x, y, _ = arcs
+        if map_list[x][y] == ' ':
+            map_list[x][y] = '.'
     result = ""
     for row in map_list:
         result += ''.join(row) + '\n'

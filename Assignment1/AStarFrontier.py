@@ -16,7 +16,7 @@ class AStarFrontier(Frontier):
         Arc objects. You should override this method.
         """
         if path[-1].head not in self.explored:
-            heappush(self.frontier, (sum(x.cost for x in path) + self.order + self.map_graph.estimated_cost_to_goal(path[-1].head)*5, path))
+            heappush(self.frontier, (sum(x.cost for x in path) + self.order + self.map_graph.estimated_cost_to_goal(path[-1].head)*path[-1].cost, path))
             self.order += 1/1000000000000
     def __iter__(self):
         """We don't need a separate iterator object. Just return self. You
@@ -37,7 +37,5 @@ class AStarFrontier(Frontier):
             if state not in self.explored:
                 self.explored.append(state)
                 return path_tuple
-            else:
-                raise StopIteration
-
-
+        else:
+            raise StopIteration
