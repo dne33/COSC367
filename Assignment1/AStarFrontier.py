@@ -37,7 +37,7 @@ class AStarFrontier(Frontier):
             if state not in self.explored:
                 self.explored.append(state)
                 return path_tuple
-        else:
-            raise StopIteration
+            else:
+                raise StopIteration
 
 
