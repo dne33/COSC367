@@ -1,20 +1,23 @@
-from Assignment1.RoutingGraph import RoutingGraph
-from Assignment1.RoutingGraph import print_map
-from Assignment1.AStarFrontier import AStarFrontier
-from search import *
+from Lab3.lab3_interpret import interpretations
+from Lab3.knowledge_base import models
+from Lab3.deductions import forward_deduce
+from Lab3.KBGraph import KBGraph,DFSFrontier,generic_search
 def main():
-    map_str = """\
-    +-------------+
-    | G         G |
-    |      S      |
-    | G         G |
-    +-------------+
+    kb = """
+    a :- b, c.
+    b :- d, e.
+    b :- g, e.
+    c :- e.
+    d.
+    e.
+    f :- a,
+         g.
     """
 
-    map_graph = RoutingGraph(map_str)
-    frontier = AStarFrontier(map_graph)
-    solution = next(generic_search(map_graph, frontier), None)
-    print_map(map_graph, frontier, solution)
-
+    query = {'a'}
+    if next(generic_search(KBGraph(kb, query), DFSFrontier()), None):
+        print("The query is true.")
+    else:
+        print("The query is not provable.")
 if __name__ == ("__main__"):
     main()
