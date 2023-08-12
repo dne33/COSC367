@@ -2,7 +2,7 @@ directlyIn(Wrapper,Inner) :- Wrapper=olga, Inner=katarina; Wrapper=natasha, Inne
 contains(Wrapper,Inner) :- directlyIn(Inner,Wrapper); directlyIn(Z,Wrapper), contains(Z,Inner).
 
 
-
+/* Tests*/
 test_answer :-
     directlyIn(irina, natasha),
     writeln('OK').
