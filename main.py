@@ -1,23 +1,16 @@
-from Lab3.lab3_interpret import interpretations
-from Lab3.knowledge_base import models
-from Lab3.deductions import forward_deduce
-from Lab3.KBGraph import KBGraph,DFSFrontier,generic_search
+from Lab6.generate_and_test import generate_and_test
+from csp import *
 def main():
-    kb = """
-    a :- b, c.
-    b :- d, e.
-    b :- g, e.
-    c :- e.
-    d.
-    e.
-    f :- a,
-         g.
-    """
+    if __name__ == ("__main__"):
+        simple_csp = CSP(
+            var_domains={x: set(range(1, 5)) for x in 'abc'},
+            constraints={
+                lambda a, b: a < b,
+                lambda b, c: b < c,
+            })
 
-    query = {'a'}
-    if next(generic_search(KBGraph(kb, query), DFSFrontier()), None):
-        print("The query is true.")
-    else:
-        print("The query is not provable.")
+        solutions = sorted(str(sorted(solution.items())) for solution
+                           in generate_and_test(simple_csp))
+        print("\n".join(solutions))
 if __name__ == ("__main__"):
     main()
