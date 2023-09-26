@@ -1,15 +1,19 @@
 from Lab6.generate_and_test import generate_and_test
 from csp import *
-from search import *
-from PracticeQs.SlidingPuzzleGraph import SlidingPuzzleGraph
-from PracticeQs.SlidingPuzzleGraph import BFSFrontier
+from Lab6.cryptic_puz import *
+
+
 def main():
     if __name__ == ("__main__"):
-        graph = SlidingPuzzleGraph([[1, ' ', 2],
-                                    [6, 4, 3],
-                                    [7, 8, 5]])
+        new_csp = arc_consistent(cryptic_puzzle)
+        solutions = []
+        for solution in generate_and_test(new_csp):
+            solutions.append(sorted((x, v) for x, v in solution.items()
+                                    if x in "twofur"))
+        print(len(solutions))
+        solutions.sort()
+        print(solutions[0])
+        print(solutions[5])
 
-        solutions = generic_search(graph, BFSFrontier())
-        print_actions(next(solutions))
 if __name__ == ("__main__"):
     main()
