@@ -8,9 +8,10 @@ def construct_perceptron(weights, bias):
 
 
 if __name__ == "__main__":
-    weights = [2, -4]
+    weights = [0.5, 0.5]
     bias = 0
     perceptron = construct_perceptron(weights, bias)
+    print(perceptron([1, -1]))
 
     print(perceptron([1, 1]) == 0)
     print(perceptron([2, 1]) == 1)
